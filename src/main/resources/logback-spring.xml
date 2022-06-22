@@ -15,7 +15,7 @@
 		</encoder>
 
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${LOGS}/archived/application-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<fileNamePattern>${LOGS}/application-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<maxFileSize>4MB</maxFileSize>
 			</timeBasedFileNamingAndTriggeringPolicy>
@@ -27,7 +27,7 @@
 		<appender-ref ref="Console" />
 	</root>
 
-	<logger name="com.example.demo" level="trace" additivity="false">
+	<logger name="chapters.configuration">
 		<appender-ref ref="RollingFile" />
 		<appender-ref ref="Console" />
 	</logger>
