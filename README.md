@@ -3,7 +3,9 @@
 
 Product manage site service for hands-on
 
+
 Pls. refer orginal https://github.com/TetsujiFurukawa/product-manage-site-service-for-hands-on
+
 
 This repo revamp the original service below
 1.  change IDE from Intellij to Spring Tool Suite
@@ -14,6 +16,13 @@ This repo revamp the original service below
 
 
 Update
+
+
+20220623
+1.	add JPA feature
+2.	add tables entity
+3.	update tables schema
+
 
 20220622
 1.	temp. disable spring security
