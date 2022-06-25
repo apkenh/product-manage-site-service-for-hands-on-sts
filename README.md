@@ -17,6 +17,9 @@ This repo revamp the original service below
 
 Update
 
+20220625
+1.	add oauth2 jwt
+2.	fix statics folder path
 
 20220623
 1.	add JPA feature
