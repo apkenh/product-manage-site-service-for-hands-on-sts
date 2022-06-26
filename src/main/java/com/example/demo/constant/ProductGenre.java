@@ -15,10 +15,4 @@ public enum ProductGenre {
 	private final String code;
 
 	private final String property;
-
-	ProductGenre(String code, String property) {
-		this.code = code;
-		this.property = property;
-	}
-
 }

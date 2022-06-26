@@ -9,6 +9,6 @@
 		<class>com.example.demo.entity.domain.TblSpringSession</class>
 		<class>com.example.demo.entity.domain.TblSpringSessionAttribute</class>
 		<class>com.example.demo.entity.domain.TblSpringSessionAttributePK</class>
-		<class>com.example.demo.entity.domain.TblUserMst</class>
+		<class>com.example.demo.entity.domain.UserMst</class>
 	</persistence-unit>
 </persistence>

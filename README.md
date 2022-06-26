@@ -17,9 +17,15 @@ This repo revamp the original service below
 
 Update
 
+20220626
+1.	Rename TblUserMst for class
+2.	Add sign-in controller
+
+
 20220625
 1.	add oauth2 jwt
 2.	fix statics folder path
+
 
 20220623
 1.	add JPA feature

@@ -17,8 +17,8 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "tbl_user_mst")
-@NamedQuery(name = "TblUserMst.findAll", query = "SELECT t FROM TblUserMst t")
-public class TblUserMst implements Serializable {
+@NamedQuery(name = "UserMst.findAll", query = "SELECT t FROM UserMst t")
+public class UserMst implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -63,7 +63,7 @@ public class TblUserMst implements Serializable {
 	@Column(name = "user_timezone_offset")
 	private String userTimezoneOffset;
 
-	public TblUserMst() {
+	public UserMst() {
 	}
 
 	public int getUserSeq() {
