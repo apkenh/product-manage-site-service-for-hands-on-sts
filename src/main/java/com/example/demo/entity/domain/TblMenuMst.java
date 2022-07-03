@@ -1,54 +1,47 @@
 package com.example.demo.entity.domain;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the tbl_menu_mst database table.
  * 
  */
 @Entity
-@Table(name = "tbl_menu_mst")
-@NamedQuery(name = "TblMenuMst.findAll", query = "SELECT t FROM TblMenuMst t")
+@Table(name="tbl_menu_mst")
+@NamedQuery(name="TblMenuMst.findAll", query="SELECT t FROM TblMenuMst t")
 public class TblMenuMst implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "menu_seq")
+	@Column(name="menu_seq")
 	private int menuSeq;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "enter_date")
+	@Column(name="enter_date")
 	private Date enterDate;
 
-	@Column(name = "enter_user")
+	@Column(name="enter_user")
 	private String enterUser;
 
-	@Column(name = "menu_code")
+	@Column(name="menu_code")
 	private String menuCode;
 
-	@Column(name = "menu_order")
+	@Column(name="menu_order")
 	private short menuOrder;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_date")
+	@Column(name="update_date")
 	private Date updateDate;
 
-	@Column(name = "update_user")
+	@Column(name="update_user")
 	private String updateUser;
 
-	// bi-directional many-to-one association to TblPageRoleMst
-	@OneToMany(mappedBy = "tblMenuMst")
+	//bi-directional many-to-one association to TblPageRoleMst
+	@OneToMany(mappedBy="tblMenuMst")
 	private List<TblPageRoleMst> tblPageRoleMsts;
 
 	public TblMenuMst() {

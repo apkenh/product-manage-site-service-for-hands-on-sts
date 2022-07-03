@@ -19,7 +19,9 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
 import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.example.demo.filter.JWTTokenAuthenticationFilter;
 import com.example.demo.service.security.LoginUserDetailsService;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
@@ -44,8 +46,6 @@ public class SecurityConfiguration {
 
 	private static final String API_SIGN_OUT = "/api/sign-out/*";
 
-	private static final String API_TOKEN = "/api/token";
-
 	private static final String PRODUCT_IMAGES = "/product-images/*";
 
 	private static final String ASSETS_I18N = "/assets/i18n/*";
@@ -56,9 +56,13 @@ public class SecurityConfiguration {
 			"/swagger-ui.html",
 			"/swagger-ui/**",
 			PRODUCT_IMAGES,
-			ASSETS_I18N
+			ASSETS_I18N,
+			"/actuator/**"
 			};
 	// @formatter:on
+
+	@Autowired
+	JWTTokenAuthenticationFilter jwtTokenAuthenticationFilter;
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -77,9 +81,21 @@ public class SecurityConfiguration {
 				.antMatchers(AUTH_WHITELIST)
 				.permitAll()
 				.anyRequest()
-				.authenticated()			
+				.authenticated()		
 			.and()
-				.csrf().ignoringAntMatchers(API_SIGN_IN, API_SIGN_OUT, API_TOKEN)
+				.csrf().ignoringAntMatchers(API_SIGN_IN, API_SIGN_OUT)
+			;		
+		// @formatter:on
+
+		return httpSecurity.build();
+	}
+
+	@Bean
+	public SecurityFilterChain jwtSecurityFilterChain(HttpSecurity httpSecurity) throws Exception {
+
+		// @formatter:off		
+		httpSecurity
+			.addFilterBefore(jwtTokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
 			;		
 		// @formatter:on
 

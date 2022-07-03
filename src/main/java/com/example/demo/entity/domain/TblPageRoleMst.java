@@ -1,61 +1,53 @@
 package com.example.demo.entity.domain;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the tbl_page_role_mst database table.
  * 
  */
 @Entity
-@Table(name = "tbl_page_role_mst")
-@NamedQuery(name = "TblPageRoleMst.findAll", query = "SELECT t FROM TblPageRoleMst t")
+@Table(name="tbl_page_role_mst")
+@NamedQuery(name="TblPageRoleMst.findAll", query="SELECT t FROM TblPageRoleMst t")
 public class TblPageRoleMst implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "page_role_seq")
+	@Column(name="page_role_seq")
 	private int pageRoleSeq;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "enter_date")
+	@Column(name="enter_date")
 	private Date enterDate;
 
-	@Column(name = "enter_user")
+	@Column(name="enter_user")
 	private String enterUser;
 
-	@Column(name = "menu_display")
-	private Boolean menuDisplay;
+	@Column(name="menu_display")
+	private byte menuDisplay;
 
-	@Column(name = "menu_order")
+	@Column(name="menu_order")
 	private short menuOrder;
 
-	@Column(name = "page_code")
+	@Column(name="page_code")
 	private String pageCode;
 
-	@Column(name = "page_role")
+	@Column(name="page_role")
 	private String pageRole;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_date")
+	@Column(name="update_date")
 	private Date updateDate;
 
-	@Column(name = "update_user")
+	@Column(name="update_user")
 	private String updateUser;
 
-	// bi-directional many-to-one association to TblMenuMst
+	//bi-directional many-to-one association to TblMenuMst
 	@ManyToOne
-	@JoinColumn(name = "menu_seq")
+	@JoinColumn(name="menu_seq")
 	private TblMenuMst tblMenuMst;
 
 	public TblPageRoleMst() {
@@ -85,11 +77,11 @@ public class TblPageRoleMst implements Serializable {
 		this.enterUser = enterUser;
 	}
 
-	public Object getMenuDisplay() {
+	public byte getMenuDisplay() {
 		return this.menuDisplay;
 	}
 
-	public void setMenuDisplay(Boolean menuDisplay) {
+	public void setMenuDisplay(byte menuDisplay) {
 		this.menuDisplay = menuDisplay;
 	}
 

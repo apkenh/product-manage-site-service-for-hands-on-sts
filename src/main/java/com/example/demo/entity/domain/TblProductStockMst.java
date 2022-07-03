@@ -1,53 +1,45 @@
 package com.example.demo.entity.domain;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the tbl_product_stock_mst database table.
  * 
  */
 @Entity
-@Table(name = "tbl_product_stock_mst")
-@NamedQuery(name = "TblProductStockMst.findAll", query = "SELECT t FROM TblProductStockMst t")
+@Table(name="tbl_product_stock_mst")
+@NamedQuery(name="TblProductStockMst.findAll", query="SELECT t FROM TblProductStockMst t")
 public class TblProductStockMst implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "product_stock_seq")
+	@Column(name="product_stock_seq")
 	private int productStockSeq;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "enter_date")
+	@Column(name="enter_date")
 	private Date enterDate;
 
-	@Column(name = "enter_user")
+	@Column(name="enter_user")
 	private String enterUser;
 
-	@Column(name = "product_stock_quantity")
+	@Column(name="product_stock_quantity")
 	private BigDecimal productStockQuantity;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_date")
+	@Column(name="update_date")
 	private Date updateDate;
 
-	@Column(name = "update_user")
+	@Column(name="update_user")
 	private String updateUser;
 
-	// bi-directional many-to-one association to TblProductMst
+	//bi-directional many-to-one association to TblProductMst
 	@ManyToOne
-	@JoinColumn(name = "product_seq")
+	@JoinColumn(name="product_seq")
 	private TblProductMst tblProductMst;
 
 	public TblProductStockMst() {

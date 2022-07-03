@@ -1,69 +1,66 @@
 package com.example.demo.entity.domain;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the tbl_user_mst database table.
  * 
  */
 @Entity
-@Table(name = "tbl_user_mst")
-@NamedQuery(name = "UserMst.findAll", query = "SELECT t FROM UserMst t")
-public class UserMst implements Serializable {
+@Table(name="tbl_user_mst")
+@NamedQuery(name="TblUserMst.findAll", query="SELECT t FROM TblUserMst t")
+public class TblUserMst implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "user_seq")
+	@Column(name="user_seq")
 	private int userSeq;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "enter_date")
+	@Column(name="enter_date")
 	private Date enterDate;
 
-	@Column(name = "enter_user")
+	@Column(name="enter_user")
 	private String enterUser;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_date")
+	@Column(name="update_date")
 	private Date updateDate;
 
-	@Column(name = "update_user")
+	@Column(name="update_user")
 	private String updateUser;
 
-	@Column(name = "user_account")
+	@Column(name="user_account")
 	private String userAccount;
 
-	@Column(name = "user_currency")
+	@Column(name="user_currency")
 	private String userCurrency;
 
-	@Column(name = "user_encoded_password")
+	@Column(name="user_encoded_password")
 	private String userEncodedPassword;
 
-	@Column(name = "user_locale")
+	@Column(name="user_locale")
 	private String userLocale;
 
-	@Column(name = "user_name")
+	@Column(name="user_name")
 	private String userName;
 
-	@Column(name = "user_sub_menu_role")
+	@Column(name="user_sub_menu_role")
 	private String userSubMenuRole;
 
-	@Column(name = "user_timezone")
+	@Column(name="user_timezone")
 	private String userTimezone;
 
-	@Column(name = "user_timezone_offset")
+	@Column(name="user_timezone_offset")
 	private String userTimezoneOffset;
 
-	public UserMst() {
+	@Column(name="user_token")
+	private String userToken;
+
+	public TblUserMst() {
 	}
 
 	public int getUserSeq() {
@@ -168,6 +165,14 @@ public class UserMst implements Serializable {
 
 	public void setUserTimezoneOffset(String userTimezoneOffset) {
 		this.userTimezoneOffset = userTimezoneOffset;
+	}
+
+	public String getUserToken() {
+		return this.userToken;
+	}
+
+	public void setUserToken(String userToken) {
+		this.userToken = userToken;
 	}
 
 }

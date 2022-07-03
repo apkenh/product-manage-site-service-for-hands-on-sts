@@ -1,78 +1,71 @@
 package com.example.demo.entity.domain;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the tbl_product_mst database table.
  * 
  */
 @Entity
-@Table(name = "tbl_product_mst")
-@NamedQuery(name = "TblProductMst.findAll", query = "SELECT t FROM TblProductMst t")
+@Table(name="tbl_product_mst")
+@NamedQuery(name="TblProductMst.findAll", query="SELECT t FROM TblProductMst t")
 public class TblProductMst implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "product_seq")
+	@Column(name="product_seq")
 	private int productSeq;
 
-	@Column(name = "end_of_sale")
-	private Boolean endOfSale;
+	@Column(name="end_of_sale")
+	private byte endOfSale;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "end_of_sale_date")
+	@Column(name="end_of_sale_date")
 	private Date endOfSaleDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "enter_date")
+	@Column(name="enter_date")
 	private Date enterDate;
 
-	@Column(name = "enter_user")
+	@Column(name="enter_user")
 	private String enterUser;
 
-	@Column(name = "product_code")
+	@Column(name="product_code")
 	private String productCode;
 
-	@Column(name = "product_color")
+	@Column(name="product_color")
 	private String productColor;
 
-	@Column(name = "product_genre")
+	@Column(name="product_genre")
 	private String productGenre;
 
-	@Column(name = "product_name")
+	@Column(name="product_name")
 	private String productName;
 
-	@Column(name = "product_size_standard")
+	@Column(name="product_size_standard")
 	private String productSizeStandard;
 
-	@Column(name = "product_unit_price")
+	@Column(name="product_unit_price")
 	private BigDecimal productUnitPrice;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_date")
+	@Column(name="update_date")
 	private Date updateDate;
 
-	@Column(name = "update_user")
+	@Column(name="update_user")
 	private String updateUser;
 
-	// bi-directional many-to-one association to TblProductPurchase
-	@OneToMany(mappedBy = "tblProductMst")
+	//bi-directional many-to-one association to TblProductPurchase
+	@OneToMany(mappedBy="tblProductMst")
 	private List<TblProductPurchase> tblProductPurchases;
 
-	// bi-directional many-to-one association to TblProductStockMst
-	@OneToMany(mappedBy = "tblProductMst")
+	//bi-directional many-to-one association to TblProductStockMst
+	@OneToMany(mappedBy="tblProductMst")
 	private List<TblProductStockMst> tblProductStockMsts;
 
 	public TblProductMst() {
@@ -86,11 +79,11 @@ public class TblProductMst implements Serializable {
 		this.productSeq = productSeq;
 	}
 
-	public Object getEndOfSale() {
+	public byte getEndOfSale() {
 		return this.endOfSale;
 	}
 
-	public void setEndOfSale(Boolean endOfSale) {
+	public void setEndOfSale(byte endOfSale) {
 		this.endOfSale = endOfSale;
 	}
 

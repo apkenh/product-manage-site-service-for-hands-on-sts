@@ -1,10 +1,11 @@
 package com.example.demo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.dto.response.SignInResponseDto;
+import com.example.demo.entity.model.UserMstEx;
 import com.example.demo.service.rest.SignInRestService;
 
 import lombok.RequiredArgsConstructor;
@@ -14,10 +15,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SignInController {
 
-	private final SignInRestService signInRestService;
+	@Autowired
+	private SignInRestService signInRestService;
 
 	@PostMapping("/sign-in/v1")
-	public SignInResponseDto signInV1() {
+	public UserMstEx signInV1() {
 		return signInRestService.signIn();
 	}
 

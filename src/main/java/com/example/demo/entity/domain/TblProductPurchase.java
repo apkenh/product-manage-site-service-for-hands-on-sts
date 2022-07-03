@@ -1,66 +1,58 @@
 package com.example.demo.entity.domain;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the tbl_product_purchase database table.
  * 
  */
 @Entity
-@Table(name = "tbl_product_purchase")
-@NamedQuery(name = "TblProductPurchase.findAll", query = "SELECT t FROM TblProductPurchase t")
+@Table(name="tbl_product_purchase")
+@NamedQuery(name="TblProductPurchase.findAll", query="SELECT t FROM TblProductPurchase t")
 public class TblProductPurchase implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "product_purchase_seq")
+	@Column(name="product_purchase_seq")
 	private int productPurchaseSeq;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "enter_date")
+	@Column(name="enter_date")
 	private Date enterDate;
 
-	@Column(name = "enter_user")
+	@Column(name="enter_user")
 	private String enterUser;
 
-	@Column(name = "product_purchase_amount")
+	@Column(name="product_purchase_amount")
 	private BigDecimal productPurchaseAmount;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "product_purchase_date")
+	@Column(name="product_purchase_date")
 	private Date productPurchaseDate;
 
-	@Column(name = "product_purchase_name")
+	@Column(name="product_purchase_name")
 	private String productPurchaseName;
 
-	@Column(name = "product_purchase_quantity")
+	@Column(name="product_purchase_quantity")
 	private BigDecimal productPurchaseQuantity;
 
-	@Column(name = "product_purchase_unit_price")
+	@Column(name="product_purchase_unit_price")
 	private BigDecimal productPurchaseUnitPrice;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_date")
+	@Column(name="update_date")
 	private Date updateDate;
 
-	@Column(name = "update_user")
+	@Column(name="update_user")
 	private String updateUser;
 
-	// bi-directional many-to-one association to TblProductMst
+	//bi-directional many-to-one association to TblProductMst
 	@ManyToOne
-	@JoinColumn(name = "product_seq")
+	@JoinColumn(name="product_seq")
 	private TblProductMst tblProductMst;
 
 	public TblProductPurchase() {

@@ -8,6 +8,7 @@ CREATE TABLE tbl_user_mst (
     user_timezone_offset VARCHAR(5) NOT NULL,
     user_currency VARCHAR(3) NOT NULL,
     user_sub_menu_role VARCHAR(10) NOT NULL,
+    user_token VARCHAR(1024) NOT NULL DEFAULT '',
     enter_date DATETIME NOT NULL,
     enter_user VARCHAR(50) NOT NULL,
     update_date DATETIME NOT NULL,

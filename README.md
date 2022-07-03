@@ -17,6 +17,14 @@ This repo revamp the original service below
 
 Update
 
+
+20220703
+1.	remove session storage
+2.	revise tbl_user_mst to add token field
+3.	add jwt handling for sign-in, sign-out and validation
+4.	simplify ext entity class
+
+
 20220626
 1.	Rename TblUserMst for class
 2.	Add sign-in controller

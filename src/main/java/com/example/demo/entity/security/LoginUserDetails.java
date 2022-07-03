@@ -3,7 +3,7 @@ package com.example.demo.entity.security;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 
-import com.example.demo.entity.UserMstEx;
+import com.example.demo.entity.model.UserMstEx;
 
 import lombok.Data;
 
@@ -15,8 +15,7 @@ public class LoginUserDetails extends User {
 	private final UserMstEx userMstEx;
 
 	public LoginUserDetails(UserMstEx userMstEx) {
-
-		super(userMstEx.getUserAccount(), userMstEx.getUserEncodedPassword(), AuthorityUtils.createAuthorityList("ROLE_USER"));
+		super(userMstEx.getUserAccount(), userMstEx.getUserEncodedPassword(), AuthorityUtils.createAuthorityList(userMstEx.getUserSubMenuRole()));
 		this.userMstEx = userMstEx;
 	}
 }

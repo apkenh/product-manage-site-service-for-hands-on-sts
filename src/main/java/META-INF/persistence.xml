@@ -6,9 +6,6 @@
 		<class>com.example.demo.entity.domain.TblProductMst</class>
 		<class>com.example.demo.entity.domain.TblProductPurchase</class>
 		<class>com.example.demo.entity.domain.TblProductStockMst</class>
-		<class>com.example.demo.entity.domain.TblSpringSession</class>
-		<class>com.example.demo.entity.domain.TblSpringSessionAttribute</class>
-		<class>com.example.demo.entity.domain.TblSpringSessionAttributePK</class>
-		<class>com.example.demo.entity.domain.UserMst</class>
+		<class>com.example.demo.entity.domain.TblUserMst</class>
 	</persistence-unit>
 </persistence>

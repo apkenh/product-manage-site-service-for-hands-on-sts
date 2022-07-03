@@ -12,10 +12,9 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.UserMstEx;
-import com.example.demo.entity.dto.response.SignInResponseDto;
-import com.example.demo.service.security.AuthenticationService;
-import com.example.demo.service.session.SessionService;
+import com.example.demo.entity.model.UserMstEx;
+import com.example.demo.entity.security.LoginUserDetails;
+import com.example.demo.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,37 +22,22 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SignInRestService extends BaseRestService {
 
-	private final AuthenticationService principalService;
-	private final SessionService sessionService;
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
-	JwtEncoder jwtEncoder;
+	private JwtEncoder jwtEncoder;
 
-	public SignInResponseDto signIn() {
+	public UserMstEx signIn() {
 
-		UserMstEx userMstEx = principalService.getUserMstEx();
-		sessionService.setupSession(userMstEx);
-		SignInResponseDto signInResponseDto = createresponseDto(userMstEx);
+		LoginUserDetails loginUserDetails = (LoginUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserMstEx userMstEx = loginUserDetails.getUserMstEx();
 
-		return signInResponseDto;
+		userMstEx.setUserToken(getToken());
 
-	}
+		userRepository.updateUserTokenByUserAccount(userMstEx.getUserAccount(), userMstEx.getUserToken());
 
-	private SignInResponseDto createresponseDto(UserMstEx userMstEx) {
-
-		// @formatter:off
-		SignInResponseDto signInResponceDto = new SignInResponseDto(
-				userMstEx.getUserAccount(),
-				userMstEx.getUserName(),
-				userMstEx.getUserLocale(),
-				userMstEx.getUserLanguage(),
-				userMstEx.getUserTimezone(),
-				userMstEx.getUserTimezoneOffset(),
-				userMstEx.getUserCurrency(), getToken()
-				);
-		// @formatter:on
-
-		return signInResponceDto;
+		return userMstEx;
 
 	}
 
