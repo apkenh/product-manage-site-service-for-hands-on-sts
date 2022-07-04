@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.service.rest.SignOutRestService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("api")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "Bearer Authentication")
 public class SignOutController {
 
 	@Autowired

@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -27,26 +29,30 @@ public class JWTTokenAuthenticationFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
 		if (!request.getRequestURI().equalsIgnoreCase("/api/sign-in/v1")) {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-			String userAccount = SecurityContextHolder.getContext().getAuthentication().getName();
-			String token = ((Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getTokenValue();
+			if (authentication instanceof JwtAuthenticationToken) {
 
-			List<UserMstTokenEx> userMstTokenExs = userRepository.fetchUserTokenByUserAccount(userAccount);
+				String userAccount = SecurityContextHolder.getContext().getAuthentication().getName();
+				String token = ((Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getTokenValue();
 
-			if (userMstTokenExs.size() != 1) {
-				request.getSession().invalidate();
-				SecurityContextHolder.getContext().setAuthentication(null);
-				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-				return;
-			}
+				List<UserMstTokenEx> userMstTokenExs = userRepository.fetchUserTokenByUserAccount(userAccount);
 
-			UserMstTokenEx userMstTokenEx = userMstTokenExs.get(0);
+				if (userMstTokenExs.size() != 1) {
+					request.getSession().invalidate();
+					SecurityContextHolder.getContext().setAuthentication(null);
+					response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+					return;
+				}
 
-			if (!userMstTokenEx.getUserToken().equalsIgnoreCase(token)) {
-				request.getSession().invalidate();
-				SecurityContextHolder.getContext().setAuthentication(null);
-				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-				return;
+				UserMstTokenEx userMstTokenEx = userMstTokenExs.get(0);
+
+				if (!userMstTokenEx.getUserToken().equalsIgnoreCase(token)) {
+					request.getSession().invalidate();
+					SecurityContextHolder.getContext().setAuthentication(null);
+					response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+					return;
+				}
 			}
 		}
 

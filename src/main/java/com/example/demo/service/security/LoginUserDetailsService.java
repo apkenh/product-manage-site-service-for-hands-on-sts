@@ -23,7 +23,7 @@ public class LoginUserDetailsService implements UserDetailsService {
 	private static final String THE_REQUESTED_USER_IS_NOT_FOUND = "The requested user is not found.";
 
 	@Autowired
-	private final UserRepository userRepository;
+	private UserRepository userRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String userAccount) throws UsernameNotFoundException {

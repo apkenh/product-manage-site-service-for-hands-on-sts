@@ -18,6 +18,12 @@ This repo revamp the original service below
 Update
 
 
+20220704
+1.	springdoc openapi add header Authorization Bearer
+2.	fix jwt filter to add type checking
+3.	menu service get sub menu role from token
+
+
 20220703
 1.	remove session storage
 2.	revise tbl_user_mst to add token field

@@ -1,8 +1,12 @@
 package com.example.demo.service.rest;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.dto.response.MenuListResponseDto;
@@ -15,11 +19,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MenuRestService extends BaseRestService {
 
-	private final AccountService accountService;
+	@Autowired
+	private AccountService accountService;
 
 	public List<MenuListResponseDto> getMenu() {
 
-		String userSubMenuRole = "normal"; // accountService.getUserSubMenuRole();
+		Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+		String userSubMenuRole = authorities.iterator().next().getAuthority();
+		userSubMenuRole = userSubMenuRole.replace("SCOPE_", "");
+
 		List<MenuMstEx> menuMstExs = accountService.getMenuList(userSubMenuRole);
 
 		return createResponseDto(menuMstExs);
