@@ -56,8 +56,7 @@ public class SecurityConfiguration {
 			"/swagger-ui.html",
 			"/swagger-ui/**",
 			PRODUCT_IMAGES,
-			ASSETS_I18N,
-			"/actuator/**"
+			ASSETS_I18N
 			};
 	// @formatter:on
 

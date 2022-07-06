@@ -73,6 +73,7 @@ CREATE TABLE tbl_page_role_mst (
     CONSTRAINT tbl_page_role_mst_pk PRIMARY KEY (page_role_seq)
 );
 
+CREATE INDEX idx_page_role_mst_1 on tbl_page_role_mst (page_role);
 
 CREATE TABLE tbl_menu_mst (
 	menu_seq INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -97,26 +98,27 @@ ALTER TABLE tbl_page_role_mst
 	ADD CONSTRAINT tbl_page_role_mst_fk FOREIGN KEY (menu_seq) REFERENCES tbl_menu_mst(menu_seq)
 	ON DELETE CASCADE;
 
-CREATE TABLE tbl_spring_session (
-	primary_id CHAR(36) NOT NULL,
-	session_id CHAR(36) NOT NULL,
-	creation_time BIGINT NOT NULL,
-	last_access_time BIGINT NOT NULL,
-	max_inactive_interval INT NOT NULL,
-	expiry_time BIGINT NOT NULL,
-	principal_name VARCHAR(100),
-	CONSTRAINT tbl_spring_session_pk PRIMARY KEY (primary_id)
-);
-
-CREATE UNIQUE INDEX idx_spring_session_1 on tbl_spring_session (session_id);
-CREATE INDEX idx_spring_session_2 on tbl_spring_session (expiry_time);
-CREATE INDEX idx_spring_session_3 on tbl_spring_session (principal_name);
-
-CREATE TABLE tbl_spring_session_attributes (
-	session_primary_id CHAR(36) NOT NULL,
-	attribute_name VARCHAR(200) NOT NULL,
-	attribute_bytes BLOB NOT NULL,
-	CONSTRAINT tbl_spring_session_attributes_pk PRIMARY KEY (session_primary_id, attribute_name),
-	CONSTRAINT tbl_spring_session_attributes_fk FOREIGN KEY (session_primary_id) REFERENCES tbl_spring_session(primary_id) ON DELETE CASCADE
-);
-
+--
+--CREATE TABLE tbl_spring_session (
+--	primary_id CHAR(36) NOT NULL,
+--	session_id CHAR(36) NOT NULL,
+--	creation_time BIGINT NOT NULL,
+--	last_access_time BIGINT NOT NULL,
+--	max_inactive_interval INT NOT NULL,
+--	expiry_time BIGINT NOT NULL,
+--	principal_name VARCHAR(100),
+--	CONSTRAINT tbl_spring_session_pk PRIMARY KEY (primary_id)
+--);
+--
+--CREATE UNIQUE INDEX idx_spring_session_1 on tbl_spring_session (session_id);
+--CREATE INDEX idx_spring_session_2 on tbl_spring_session (expiry_time);
+--CREATE INDEX idx_spring_session_3 on tbl_spring_session (principal_name);
+--
+--CREATE TABLE tbl_spring_session_attributes (
+--	session_primary_id CHAR(36) NOT NULL,
+--	attribute_name VARCHAR(200) NOT NULL,
+--	attribute_bytes BLOB NOT NULL,
+--	CONSTRAINT tbl_spring_session_attributes_pk PRIMARY KEY (session_primary_id, attribute_name),
+--	CONSTRAINT tbl_spring_session_attributes_fk FOREIGN KEY (session_primary_id) REFERENCES tbl_spring_session(primary_id) ON DELETE CASCADE
+--);
+--

@@ -29,10 +29,10 @@ public class MenuRestController {
 
 	}
 
-//	@GetMapping("/available-pages/v1")
-//	public List<String> availablePagesV1() {
-//
-//		return menuRestService.getAvailablePages();
-//
-//	}
+	@GetMapping("/available-pages/v1")
+	public List<String> availablePagesV1() {
+
+		return menuRestService.getAvailablePages();
+
+	}
 }

@@ -3,6 +3,7 @@ package com.example.demo.service.rest;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -62,15 +63,18 @@ public class MenuRestService extends BaseRestService {
 
 		return menuListResponseDtos;
 	}
-//
-//	public List<String> getAvailablePages() {
-//
-//		String userSubMenuRole = "normal"; // accountService.getUserSubMenuRole();
-//
-//		List<String> availablePages = accountService.getAvailablePages(userSubMenuRole).stream().map(pageRoleMst -> pageRoleMst.getPageCode()).collect(Collectors.toList());
-//
-//		return availablePages;
-//
-//	}
+
+	public List<String> getAvailablePages() {
+
+		Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+		String userSubMenuRole = authorities.iterator().next().getAuthority();
+		userSubMenuRole = userSubMenuRole.replace("SCOPE_", "");
+
+		List<String> availablePages = accountService.getAvailablePages(userSubMenuRole).stream().map(pageRoleMst -> pageRoleMst.getPageCode()).collect(Collectors.toList());
+
+		return availablePages;
+
+	}
 
 }

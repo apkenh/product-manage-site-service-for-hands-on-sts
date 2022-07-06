@@ -18,6 +18,15 @@ This repo revamp the original service below
 Update
 
 
+20220706
+1.	add availablePagesV1
+2.	add index for tbl_page_role_mst page_role
+3.	fix jpa mysql boolean type
+4.	comment out spring session table sql
+5.	remove actuator
+6.	remove userEncodedPassword return
+
+
 20220704
 1.	springdoc openapi add header Authorization Bearer
 2.	fix jwt filter to add type checking

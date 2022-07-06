@@ -1,5 +1,7 @@
 package com.example.demo.entity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +11,8 @@ public class UserMstEx {
 
 	private Integer userSeq;
 	private String userAccount;
+
+	@JsonIgnore
 	private String userEncodedPassword;
 	private String userName;
 	private String userLocale;
